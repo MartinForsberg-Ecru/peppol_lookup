@@ -45,7 +45,7 @@ def published_services(participant_id):
     '''
     Makes a lookup into Peppol SML/SMP and returns the registered services
     :param participant_id: The PeppolID to lookup
-    :return: A dictionary with each service as key and value true/false. Returns None in case the id isn't registered in Peppol
+    :return: A dictionary with each service as key and value true/false
     '''
     # Create dictionary
     service_urns = get_service_urns()
@@ -105,10 +105,9 @@ def main():
 
                 with open(filepath_in, 'r') as file:
                     for line in file:
-                        # Remove any trailing whitespace including newline characters
                         number_of_lines += 1  # calc num of lines
 
-                        # Add schemeid (suffix) to the identifier
+                        # Add schemeid (suffix) to the identifier and remove any trailing whitespace including newline characters
                         participant_id = line_value_to_participant_id(line.strip())
 
                         # Populate a dictionary for all unique participants with an empty service dictionary
@@ -126,7 +125,7 @@ def main():
 
                         # go through each line and output the result
                         for line_number, line in enumerate(file, start=1):
-                            participant_id = line_value_to_partipant_id(line.strip())
+                            participant_id = line_value_to_participant_id(line.strip())
 
                             if participant_id != "":
                                 # check if the services has already been retrieved for the participant (if it is a duplicate row)
